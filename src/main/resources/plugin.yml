@@ -1,0 +1,16 @@
+name: CruiseSkyblock
+version: '${project.version}'
+main: io.github.guy7cc.cruiseskyblock.CruiseSkyblock
+api-version: 1.20
+
+commands:
+  csb:
+    permission: csb.command.csb
+  csbdb:
+    permission: csb.command.csbdb
+
+permissions:
+  csb.command.csb:
+    default: op
+  csb.command.csbdb:
+    default: op
