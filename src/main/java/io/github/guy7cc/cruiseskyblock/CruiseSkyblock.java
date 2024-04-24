@@ -9,6 +9,7 @@ import io.github.guy7cc.cruiseskyblock.core.gui.SelectInventoryManager;
 import io.github.guy7cc.cruiseskyblock.core.item.CooldownManager;
 import io.github.guy7cc.cruiseskyblock.core.item.PlayerItemTicker;
 import io.github.guy7cc.cruiseskyblock.core.spawner.CustomSpawnerTicker;
+import io.github.guy7cc.cruiseskyblock.core.system.GeneralTicker;
 import io.github.guy7cc.cruiseskyblock.event.EntityEventHandler;
 import io.github.guy7cc.cruiseskyblock.event.InventoryEventHandler;
 import io.github.guy7cc.cruiseskyblock.event.PlayerEventHandler;

@@ -5,5 +5,7 @@ public enum SpecialEffectTarget {
     MAX_HEALTH,
     MAX_MAGIC,
     HATRED_MODIFIER,
-    ARMOR
+    ARMOR,
+    MONEY_MODIFIER,
+    MISC
 }

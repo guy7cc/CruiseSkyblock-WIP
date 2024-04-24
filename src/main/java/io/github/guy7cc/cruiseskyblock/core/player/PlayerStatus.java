@@ -16,10 +16,14 @@ public class PlayerStatus {
     public final PlayerModifiableValueHolder<Integer> maxMagic = new PlayerModifiableValueHolder<>(100, i -> i, Integer.class);
     public final PlayerModifierPipeline<Double> hatredModifier = new PlayerModifierPipeline<>(d -> d, Double.class);
     public final PlayerModifierPipeline<ElementalVector> armor = new PlayerModifierPipeline<>(v -> (ElementalVector) v.clone(), ElementalVector.class);
-
+    public final PlayerModifierPipeline<Integer> moneyModifier = new PlayerModifierPipeline<>(i -> i, Integer.class);
+    public final MiscEffectSet misc = new MiscEffectSet();
+    
     private double health;
     private int magic;
     private double hatred;
+    private int money;
+    private int maxMoney;
 
     public PlayerStatus(){
         map.put(SpecialEffectTarget.TICK, tick);
@@ -27,6 +31,8 @@ public class PlayerStatus {
         map.put(SpecialEffectTarget.MAX_MAGIC, maxMagic);
         map.put(SpecialEffectTarget.HATRED_MODIFIER, hatredModifier);
         map.put(SpecialEffectTarget.ARMOR, armor);
+        map.put(SpecialEffectTarget.MONEY_MODIFIER, moneyModifier);
+        map.put(SpecialEffectTarget.MISC, misc);
     }
 
     public void damage(ElementalVector damage){
@@ -47,8 +53,10 @@ public class PlayerStatus {
 
     public void removeSpecialEffect(int playerInvIndex) {
         if(playerInvIndex < 5 || playerInvIndex > 45) return;
-        SpecialEffect effect = effects[playerInvIndex - 5];
+        int index = playerInvIndex - 5;
+        SpecialEffect effect = effects[index];
         if(effect != null) innerRemove(effect);
+        effects[index] = null;
     }
 
     private void innerAdd(SpecialEffect effect){

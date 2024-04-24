@@ -1,6 +1,7 @@
-package io.github.guy7cc.cruiseskyblock;
+package io.github.guy7cc.cruiseskyblock.core.system;
 
-import io.github.guy7cc.cruiseskyblock.core.system.Tickable;
+import io.github.guy7cc.cruiseskyblock.CruiseSkyblock;
+import io.github.guy7cc.cruiseskyblock.ProfiledTimer;
 import io.github.guy7cc.cruiseskyblock.core.spawner.CustomSpawnerState;
 import io.github.guy7cc.cruiseskyblock.core.spawner.CustomSpawners;
 import org.bukkit.Location;
