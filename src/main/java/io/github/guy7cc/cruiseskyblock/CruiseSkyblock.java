@@ -89,7 +89,7 @@ public final class CruiseSkyblock extends JavaPlugin {
 
         PluginManager pluginManager = getServer().getPluginManager();
         pluginManager.registerEvents(new EntityEventHandler(customEntityProperty, customSpawner), this);
-        pluginManager.registerEvents(new PlayerEventHandler(playerGui, cooldown), this);
+        pluginManager.registerEvents(new PlayerEventHandler(playerStatus, playerGui, cooldown), this);
         pluginManager.registerEvents(new InventoryEventHandler(), this);
 
         Bukkit.getScheduler().runTask(this, () -> {

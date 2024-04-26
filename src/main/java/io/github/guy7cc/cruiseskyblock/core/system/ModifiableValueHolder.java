@@ -26,11 +26,14 @@ public class ModifiableValueHolder<T> implements ModifierListener<T> {
     @Override
     public void add(ValueModifier<T> modifier) {
         pipeline.add(modifier);
+        if(!pipeline.needsCalcEveryTime()) calculatedValue = pipeline.pass(baseValue);
     }
 
     @Override
     public boolean remove(ValueModifier<T> modifier) {
-        return pipeline.remove(modifier);
+        boolean result = pipeline.remove(modifier);
+        if(result && !pipeline.needsCalcEveryTime()) calculatedValue = pipeline.pass(baseValue);
+        return result;
     }
 
     @Override

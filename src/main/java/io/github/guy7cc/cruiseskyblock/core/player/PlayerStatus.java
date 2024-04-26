@@ -1,5 +1,7 @@
 package io.github.guy7cc.cruiseskyblock.core.player;
 
+import io.github.guy7cc.cruiseskyblock.core.gui.sidebar.Sidebar;
+import io.github.guy7cc.cruiseskyblock.core.gui.sidebar.SidebarComponent;
 import io.github.guy7cc.cruiseskyblock.core.system.ElementalVector;
 import io.github.guy7cc.cruiseskyblock.core.system.ModifiableValueHolder;
 import io.github.guy7cc.cruiseskyblock.core.system.ModifierPipeline;
@@ -8,7 +10,9 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class PlayerStatus implements Tickable {
@@ -99,5 +103,25 @@ public class PlayerStatus implements Tickable {
             SpecialEffectListener listener = map.get(effect.getProperty().target);
             if(listener != null) listener.removeEffect(effect);
         }
+    }
+
+    public List<SidebarComponent> getSidebarComponents(){
+        String tag = "PlayerStatus";
+        return List.of(new SidebarComponent(tag) {
+            @Override
+            public void tick(int globalTick) {
+                setText(String.format("HP: %.1f/%.1f", health, maxHealth.get()));
+            }
+        }, new SidebarComponent(tag) {
+            @Override
+            public void tick(int globalTick) {
+                setText(String.format("MP: %s/%s", magic, maxMagic.get()));
+            }
+        }, new SidebarComponent(tag) {
+            @Override
+            public void tick(int globalTick) {
+                setText(String.format("%s G", money));
+            }
+        });
     }
 }

@@ -5,6 +5,7 @@ import io.github.guy7cc.cruiseskyblock.core.item.CooldownManager;
 import io.github.guy7cc.cruiseskyblock.core.item.CustomItem;
 import io.github.guy7cc.cruiseskyblock.core.item.CustomItemInteractionResult;
 import io.github.guy7cc.cruiseskyblock.core.item.CustomItems;
+import io.github.guy7cc.cruiseskyblock.core.player.PlayerStatusManager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryType;
@@ -13,21 +14,25 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 
 public class PlayerEventHandler implements Listener {
+    private final PlayerStatusManager playerStatus;
     private final PlayerGuiManager playerGui;
     private final CooldownManager cooldown;
 
-    public PlayerEventHandler(PlayerGuiManager playerGui, CooldownManager cooldown) {
+    public PlayerEventHandler(PlayerStatusManager playerStatus, PlayerGuiManager playerGui, CooldownManager cooldown) {
+        this.playerStatus = playerStatus;
         this.playerGui = playerGui;
         this.cooldown = cooldown;
     }
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
+        playerStatus.onPlayerJoin(event.getPlayer());
         playerGui.onPlayerJoin(event.getPlayer());
     }
 
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
+        playerStatus.onPlayerQuit(event.getPlayer());
         playerGui.onPlayerQuit(event.getPlayer());
     }
 
