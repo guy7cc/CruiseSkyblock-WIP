@@ -24,6 +24,7 @@ public class GeneralTicker extends BukkitRunnable {
 
     @Override
     public void run() {
+        timer.push("CSB");
         ++globalTick;
         for (Tickable tickable : tickables) {
             timer.push(tickable.getClass().getSimpleName());
@@ -33,5 +34,6 @@ public class GeneralTicker extends BukkitRunnable {
         if (globalTick == 100) {
             CruiseSkyblock.customSpawner.add(new CustomSpawnerState(CustomSpawners.EXAMPLE_SPAWNER, new Location(CruiseSkyblock.plugin.getServer().getWorlds().get(0), 526, 64, -1926)));
         }
+        timer.pop();
     }
 }

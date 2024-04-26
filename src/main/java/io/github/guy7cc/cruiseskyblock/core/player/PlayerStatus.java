@@ -3,29 +3,35 @@ package io.github.guy7cc.cruiseskyblock.core.player;
 import io.github.guy7cc.cruiseskyblock.core.system.ElementalVector;
 import io.github.guy7cc.cruiseskyblock.core.system.ModifiableValueHolder;
 import io.github.guy7cc.cruiseskyblock.core.system.ModifierPipeline;
+import io.github.guy7cc.cruiseskyblock.core.system.Tickable;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class PlayerStatus {
+public class PlayerStatus implements Tickable {
+    public final Player player;
+
     private final SpecialEffect[] effects = new SpecialEffect[41];
     private final Map<SpecialEffectTarget, SpecialEffectListener> map = new HashMap<>();
-    public final SpecialEffectTicker tick = new SpecialEffectTicker();
-    public final PlayerModifiableValueHolder<Double> maxHealth = new PlayerModifiableValueHolder<>(40D, d -> d, Double.class);
-    public final PlayerModifiableValueHolder<Integer> maxMagic = new PlayerModifiableValueHolder<>(100, i -> i, Integer.class);
-    public final PlayerModifierPipeline<Double> hatredModifier = new PlayerModifierPipeline<>(d -> d, Double.class);
-    public final PlayerModifierPipeline<ElementalVector> armor = new PlayerModifierPipeline<>(v -> (ElementalVector) v.clone(), ElementalVector.class);
-    public final PlayerModifierPipeline<Integer> moneyModifier = new PlayerModifierPipeline<>(i -> i, Integer.class);
-    public final MiscEffectSet misc = new MiscEffectSet();
+    private final SpecialEffectTicker tick = new SpecialEffectTicker();
+    private final PlayerModifiableValueHolder<Double> maxHealth = new PlayerModifiableValueHolder<>(40D, d -> d, Double.class);
+    private final PlayerModifiableValueHolder<Integer> maxMagic = new PlayerModifiableValueHolder<>(100, i -> i, Integer.class);
+    private final PlayerModifierPipeline<Double> hatredModifier = new PlayerModifierPipeline<>(d -> d, Double.class);
+    private final PlayerModifierPipeline<ElementalVector> armor = new PlayerModifierPipeline<>(v -> (ElementalVector) v.clone(), ElementalVector.class);
+    private final PlayerModifierPipeline<Integer> moneyModifier = new PlayerModifierPipeline<>(i -> i, Integer.class);
+    private final MiscEffectSet misc = new MiscEffectSet();
     
-    private double health;
+    private double health = 10;
     private int magic;
     private double hatred;
     private int money;
     private int maxMoney;
 
-    public PlayerStatus(){
+    public PlayerStatus(Player player){
+        this.player = player;
         map.put(SpecialEffectTarget.TICK, tick);
         map.put(SpecialEffectTarget.MAX_HEALTH, maxHealth);
         map.put(SpecialEffectTarget.MAX_MAGIC, maxMagic);
@@ -33,6 +39,20 @@ public class PlayerStatus {
         map.put(SpecialEffectTarget.ARMOR, armor);
         map.put(SpecialEffectTarget.MONEY_MODIFIER, moneyModifier);
         map.put(SpecialEffectTarget.MISC, misc);
+    }
+
+    @Override
+    public void tick(int globalTick) {
+        tick.tick(globalTick);
+        applyHealth();
+    }
+
+    public void applyHealth(){
+        double scale = health / maxHealth.get();
+        int value;
+        if(scale < 1 / 40D) value = 1;
+        else value = (int)Math.floor(scale);
+        player.setHealth(value);
     }
 
     public void damage(ElementalVector damage){

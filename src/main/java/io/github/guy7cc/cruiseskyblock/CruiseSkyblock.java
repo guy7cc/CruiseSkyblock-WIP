@@ -8,6 +8,7 @@ import io.github.guy7cc.cruiseskyblock.core.gui.PlayerGuiManager;
 import io.github.guy7cc.cruiseskyblock.core.gui.SelectInventoryManager;
 import io.github.guy7cc.cruiseskyblock.core.item.CooldownManager;
 import io.github.guy7cc.cruiseskyblock.core.item.PlayerItemTicker;
+import io.github.guy7cc.cruiseskyblock.core.player.PlayerStatusManager;
 import io.github.guy7cc.cruiseskyblock.core.spawner.CustomSpawnerTicker;
 import io.github.guy7cc.cruiseskyblock.core.system.GeneralTicker;
 import io.github.guy7cc.cruiseskyblock.event.EntityEventHandler;
@@ -38,6 +39,7 @@ public final class CruiseSkyblock extends JavaPlugin {
     public static GeneralTicker ticker;
 
     public static ScoreboardManager scoreboardManager;
+    public static PlayerStatusManager playerStatus;
     public static PlayerItemTicker playerItem;
     public static PlayerGuiManager playerGui;
     public static CooldownManager cooldown;
@@ -65,6 +67,7 @@ public final class CruiseSkyblock extends JavaPlugin {
         log = new LoggerWrapper(getLogger());
         timer = new ProfiledTimer();
 
+        playerStatus = new PlayerStatusManager();
         playerItem = new PlayerItemTicker();
         playerGui = new PlayerGuiManager();
         cooldown = new CooldownManager();
@@ -94,7 +97,7 @@ public final class CruiseSkyblock extends JavaPlugin {
             scoreboardManager = Bukkit.getScoreboardManager();
             playerGui.setScoreboard(scoreboardManager);
         });
-        ticker = new GeneralTicker(timer, playerItem, playerGui, cooldown, customSpawner);
+        ticker = new GeneralTicker(timer, playerStatus, playerItem, playerGui, cooldown, customSpawner);
         ticker.runTaskTimer(plugin, 0, 1);
     }
 
