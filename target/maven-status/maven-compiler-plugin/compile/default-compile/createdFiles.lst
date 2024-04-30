@@ -14,6 +14,7 @@ io\github\guy7cc\cruiseskyblock\core\spawner\CustomSpawnerState.class
 io\github\guy7cc\cruiseskyblock\core\player\PlayerModifierPipeline.class
 io\github\guy7cc\cruiseskyblock\ProfiledTimer$Tracker.class
 io\github\guy7cc\cruiseskyblock\core\spawner\CustomSpawner.class
+io\github\guy7cc\cruiseskyblock\core\player\PlayerStatus$2.class
 io\github\guy7cc\cruiseskyblock\core\player\PlayerStatus.class
 io\github\guy7cc\cruiseskyblock\core\spawner\CustomSpawnerProperty.class
 io\github\guy7cc\cruiseskyblock\core\quest\section\QuestSection.class
@@ -32,6 +33,7 @@ io\github\guy7cc\cruiseskyblock\core\gui\SelectInventoryProperty.class
 io\github\guy7cc\cruiseskyblock\core\gui\sidebar\ProfiledTimerComponentFactory.class
 io\github\guy7cc\cruiseskyblock\core\system\GeneralTicker.class
 io\github\guy7cc\cruiseskyblock\io\json\JsonSavedData.class
+io\github\guy7cc\cruiseskyblock\core\player\PlayerStatus$3.class
 io\github\guy7cc\cruiseskyblock\core\player\SpecialEffectSet.class
 io\github\guy7cc\cruiseskyblock\core\gui\sidebar\ConstSizedSidebar.class
 io\github\guy7cc\cruiseskyblock\core\system\Registry.class
@@ -67,6 +69,7 @@ io\github\guy7cc\cruiseskyblock\core\item\CustomItems.class
 io\github\guy7cc\cruiseskyblock\core\gui\sidebar\Sidebar.class
 io\github\guy7cc\cruiseskyblock\core\gui\sidebar\SidebarComponent.class
 io\github\guy7cc\cruiseskyblock\core\system\RegistryObject.class
+io\github\guy7cc\cruiseskyblock\core\player\PlayerStatus$1.class
 io\github\guy7cc\cruiseskyblock\core\system\ModifierPriority.class
 io\github\guy7cc\cruiseskyblock\util\StringUtil.class
 io\github\guy7cc\cruiseskyblock\core\player\SpecialEffect.class

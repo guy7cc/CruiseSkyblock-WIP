@@ -7,6 +7,7 @@ import io.github.guy7cc.cruiseskyblock.core.spawner.CustomSpawnerTicker;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityRemoveEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
 
@@ -19,6 +20,11 @@ public class EntityEventHandler implements Listener {
     public EntityEventHandler(CustomEntityPropertyManager propertyManager, CustomSpawnerTicker spawnerTicker) {
         this.propertyManager = propertyManager;
         this.spawnerTicker = spawnerTicker;
+    }
+
+    @EventHandler
+    public void onEntityDamage(EntityDamageEvent event){
+
     }
 
     @EventHandler

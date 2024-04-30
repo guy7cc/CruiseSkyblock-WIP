@@ -9,6 +9,7 @@ public class ModifiableValueHolder<T> implements ModifierListener<T> {
 
     public ModifiableValueHolder(T baseValue, Function<T, T> cloner){
         this.baseValue = baseValue;
+        this.calculatedValue = cloner.apply(baseValue);
         pipeline = new ModifierPipeline<>(cloner);
     }
 

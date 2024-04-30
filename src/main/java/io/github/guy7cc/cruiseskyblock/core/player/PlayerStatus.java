@@ -48,14 +48,14 @@ public class PlayerStatus implements Tickable {
     @Override
     public void tick(int globalTick) {
         tick.tick(globalTick);
-        applyHealth();
+        if(!player.isDead()) applyHealth();
     }
 
     public void applyHealth(){
         double scale = health / maxHealth.get();
         int value;
-        if(scale < 1 / 40D) value = 1;
-        else value = (int)Math.floor(scale);
+        if(scale < 1 / 20D) value = 1;
+        else value = (int)Math.floor(scale * 20);
         player.setHealth(value);
     }
 
